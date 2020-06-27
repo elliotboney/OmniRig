@@ -1,38 +1,46 @@
 unit OmniRig_TLB;
 
 // ************************************************************************ //
-// WARNING                                                                    
-// -------                                                                    
-// The types declared in this file were generated from data read from a       
-// Type Library. If this type library is explicitly or indirectly (via        
-// another type library referring to this type library) re-imported, or the   
-// 'Refresh' command of the Type Library Editor activated while editing the   
-// Type Library, the contents of this file will be regenerated and all        
-// manual modifications will be lost.                                         
+// WARNING
+// -------
+// The types declared in this file were generated from data read from a
+// Type Library. If this type library is explicitly or indirectly (via
+// another type library referring to this type library) re-imported, or the
+// 'Refresh' command of the Type Library Editor activated while editing the
+// Type Library, the contents of this file will be regenerated and all
+// manual modifications will be lost.
 // ************************************************************************ //
 
-// PASTLWTR : $Revision:   1.88.1.0.1.0  $
-// File generated on 2004-08-26 PM 12:19:56 from Type Library described below.
+// $Rev: 52393 $
+// File generated on 26/06/2020 18:04:19 from Type Library described below.
 
+// ************************************************************************  //
+// Type Lib: C:\Users\raole\Documents\GitHub\OmniRig\src\OmniRig (1)
+// LIBID: {4FE359C5-A58F-459D-BE95-CA559FB4F270}
+// LCID: 0
+// Helpfile:
+// HelpString: OmniRig Library
+// DepndLst:
+//   (1) v2.0 stdole, (C:\Windows\SysWOW64\stdole2.tlb)
+// SYS_KIND: SYS_WIN32
 // ************************************************************************ //
-// Type Lib: D:\OmniRig\Server\OmniRig.tlb (1)
-// IID\LCID: {4FE359C5-A58F-459D-BE95-CA559FB4F270}\0
-// Helpfile: 
-// DepndLst: 
-//   (1) v2.0 stdole, (C:\WINNT\system32\stdole2.tlb)
-//   (2) v4.0 StdVCL, (C:\WINNT\System32\STDVCL40.DLL)
-// ************************************************************************ //
-{$TYPEDADDRESS OFF} // Unit must be compiled without type-checked pointers. 
+{$TYPEDADDRESS OFF} // Unit must be compiled without type-checked pointers.
+{$WARN SYMBOL_PLATFORM OFF}
+{$WRITEABLECONST ON}
+{$VARPROPSETTER ON}
+{$ALIGN 4}
+
 interface
 
-uses Windows, ActiveX, Classes, Graphics, OleServer, OleCtrls, StdVCL;
+uses Winapi.Windows, System.Classes, System.Variants, System.Win.StdVCL, Vcl.Graphics, Vcl.OleServer, Winapi.ActiveX;
+
 
 // *********************************************************************//
-// GUIDS declared in the TypeLibrary. Following prefixes are used:        
-//   Type Libraries     : LIBID_xxxx                                      
-//   CoClasses          : CLASS_xxxx                                      
-//   DISPInterfaces     : DIID_xxxx                                       
-//   Non-DISP interfaces: IID_xxxx                                        
+// GUIDS declared in the TypeLibrary. Following prefixes are used:
+//   Type Libraries     : LIBID_xxxx
+//   CoClasses          : CLASS_xxxx
+//   DISPInterfaces     : DIID_xxxx
+//   Non-DISP interfaces: IID_xxxx
 // *********************************************************************//
 const
   // TypeLibrary Major and minor versions
@@ -50,7 +58,7 @@ const
   CLASS_PortBits: TGUID = '{B786DE29-3B3D-4C66-B7C4-547F9A77A21D}';
 
 // *********************************************************************//
-// Declaration of Enumerations defined in Type Library                    
+// Declaration of Enumerations defined in Type Library
 // *********************************************************************//
 // Constants for enum RigParamX
 type
@@ -101,7 +109,7 @@ const
 type
 
 // *********************************************************************//
-// Forward declaration of types defined in TypeLibrary                    
+// Forward declaration of types defined in TypeLibrary
 // *********************************************************************//
   IOmniRigX = interface;
   IOmniRigXDisp = dispinterface;
@@ -112,8 +120,8 @@ type
   IPortBitsDisp = dispinterface;
 
 // *********************************************************************//
-// Declaration of CoClasses defined in Type Library                       
-// (NOTE: Here we map each CoClass to its Default Interface)              
+// Declaration of CoClasses defined in Type Library
+// (NOTE: Here we map each CoClass to its Default Interface)
 // *********************************************************************//
   OmniRigX = IOmniRigX;
   RigX = IRigX;
@@ -127,11 +135,11 @@ type
 // *********************************************************************//
   IOmniRigX = interface(IDispatch)
     ['{501A2858-3331-467A-837A-989FDEDACC7D}']
-    function  Get_InterfaceVersion: Integer; safecall;
-    function  Get_SoftwareVersion: Integer; safecall;
-    function  Get_Rig1: IRigX; safecall;
-    function  Get_Rig2: IRigX; safecall;
-    function  Get_DialogVisible: WordBool; safecall;
+    function Get_InterfaceVersion: Integer; safecall;
+    function Get_SoftwareVersion: Integer; safecall;
+    function Get_Rig1: IRigX; safecall;
+    function Get_Rig2: IRigX; safecall;
+    function Get_DialogVisible: WordBool; safecall;
     procedure Set_DialogVisible(Value: WordBool); safecall;
     property InterfaceVersion: Integer read Get_InterfaceVersion;
     property SoftwareVersion: Integer read Get_SoftwareVersion;
@@ -156,16 +164,16 @@ type
 
 // *********************************************************************//
 // DispIntf:  IOmniRigXEvents
-// Flags:     (4096) Dispatchable
+// Flags:     (0)
 // GUID:      {2219175F-E561-47E7-AD17-73C4D8891AA1}
 // *********************************************************************//
   IOmniRigXEvents = dispinterface
     ['{2219175F-E561-47E7-AD17-73C4D8891AA1}']
-    procedure VisibleChange; dispid 1;
-    procedure RigTypeChange(RigNumber: Integer); dispid 2;
-    procedure StatusChange(RigNumber: Integer); dispid 3;
-    procedure ParamsChange(RigNumber: Integer; Params: Integer); dispid 4;
-    procedure CustomReply(RigNumber: Integer; Command: OleVariant; Reply: OleVariant); dispid 5;
+    function VisibleChange: HResult; dispid 1;
+    function RigTypeChange(RigNumber: Integer): HResult; dispid 2;
+    function StatusChange(RigNumber: Integer): HResult; dispid 3;
+    function ParamsChange(RigNumber: Integer; Params: Integer): HResult; dispid 4;
+    function CustomReply(RigNumber: Integer; Command: OleVariant; Reply: OleVariant): HResult; dispid 5;
   end;
 
 // *********************************************************************//
@@ -175,43 +183,43 @@ type
 // *********************************************************************//
   IRigX = interface(IDispatch)
     ['{D30A7E51-5862-45B7-BFFA-6415917DA0CF}']
-    function  Get_RigType: WideString; safecall;
-    function  Get_ReadableParams: Integer; safecall;
-    function  Get_WriteableParams: Integer; safecall;
-    function  IsParamReadable(Param: RigParamX): WordBool; safecall;
-    function  IsParamWriteable(Param: RigParamX): WordBool; safecall;
-    function  Get_Status: RigStatusX; safecall;
-    function  Get_StatusStr: WideString; safecall;
-    function  Get_Freq: Integer; safecall;
+    function Get_RigType: WideString; safecall;
+    function Get_ReadableParams: Integer; safecall;
+    function Get_WriteableParams: Integer; safecall;
+    function IsParamReadable(Param: RigParamX): WordBool; safecall;
+    function IsParamWriteable(Param: RigParamX): WordBool; safecall;
+    function Get_Status: RigStatusX; safecall;
+    function Get_StatusStr: WideString; safecall;
+    function Get_Freq: Integer; safecall;
     procedure Set_Freq(Value: Integer); safecall;
-    function  Get_FreqA: Integer; safecall;
+    function Get_FreqA: Integer; safecall;
     procedure Set_FreqA(Value: Integer); safecall;
-    function  Get_FreqB: Integer; safecall;
+    function Get_FreqB: Integer; safecall;
     procedure Set_FreqB(Value: Integer); safecall;
-    function  Get_RitOffset: Integer; safecall;
+    function Get_RitOffset: Integer; safecall;
     procedure Set_RitOffset(Value: Integer); safecall;
-    function  Get_Pitch: Integer; safecall;
+    function Get_Pitch: Integer; safecall;
     procedure Set_Pitch(Value: Integer); safecall;
-    function  Get_Vfo: RigParamX; safecall;
+    function Get_Vfo: RigParamX; safecall;
     procedure Set_Vfo(Value: RigParamX); safecall;
-    function  Get_Split: RigParamX; safecall;
+    function Get_Split: RigParamX; safecall;
     procedure Set_Split(Value: RigParamX); safecall;
-    function  Get_Rit: RigParamX; safecall;
+    function Get_Rit: RigParamX; safecall;
     procedure Set_Rit(Value: RigParamX); safecall;
-    function  Get_Xit: RigParamX; safecall;
+    function Get_Xit: RigParamX; safecall;
     procedure Set_Xit(Value: RigParamX); safecall;
-    function  Get_Tx: RigParamX; safecall;
+    function Get_Tx: RigParamX; safecall;
     procedure Set_Tx(Value: RigParamX); safecall;
-    function  Get_Mode: RigParamX; safecall;
+    function Get_Mode: RigParamX; safecall;
     procedure Set_Mode(Value: RigParamX); safecall;
     procedure ClearRit; safecall;
     procedure SetSimplexMode(Freq: Integer); safecall;
     procedure SetSplitMode(RxFreq: Integer; TxFreq: Integer); safecall;
-    function  FrequencyOfTone(Tone: Integer): Integer; safecall;
+    function FrequencyOfTone(Tone: Integer): Integer; safecall;
     procedure SendCustomCommand(Command: OleVariant; ReplyLength: Integer; ReplyEnd: OleVariant); safecall;
-    function  GetRxFrequency: Integer; safecall;
-    function  GetTxFrequency: Integer; safecall;
-    function  Get_PortBits: IPortBits; safecall;
+    function GetRxFrequency: Integer; safecall;
+    function GetTxFrequency: Integer; safecall;
+    function Get_PortBits: IPortBits; safecall;
     property RigType: WideString read Get_RigType;
     property ReadableParams: Integer read Get_ReadableParams;
     property WriteableParams: Integer read Get_WriteableParams;
@@ -241,8 +249,8 @@ type
     property RigType: WideString readonly dispid 1;
     property ReadableParams: Integer readonly dispid 2;
     property WriteableParams: Integer readonly dispid 3;
-    function  IsParamReadable(Param: RigParamX): WordBool; dispid 4;
-    function  IsParamWriteable(Param: RigParamX): WordBool; dispid 5;
+    function IsParamReadable(Param: RigParamX): WordBool; dispid 4;
+    function IsParamWriteable(Param: RigParamX): WordBool; dispid 5;
     property Status: RigStatusX readonly dispid 6;
     property StatusStr: WideString readonly dispid 7;
     property Freq: Integer dispid 8;
@@ -259,10 +267,10 @@ type
     procedure ClearRit; dispid 19;
     procedure SetSimplexMode(Freq: Integer); dispid 20;
     procedure SetSplitMode(RxFreq: Integer; TxFreq: Integer); dispid 21;
-    function  FrequencyOfTone(Tone: Integer): Integer; dispid 22;
+    function FrequencyOfTone(Tone: Integer): Integer; dispid 22;
     procedure SendCustomCommand(Command: OleVariant; ReplyLength: Integer; ReplyEnd: OleVariant); dispid 23;
-    function  GetRxFrequency: Integer; dispid 24;
-    function  GetTxFrequency: Integer; dispid 25;
+    function GetRxFrequency: Integer; dispid 24;
+    function GetTxFrequency: Integer; dispid 25;
     property PortBits: IPortBits readonly dispid 26;
   end;
 
@@ -273,13 +281,13 @@ type
 // *********************************************************************//
   IPortBits = interface(IDispatch)
     ['{3DEE2CC8-1EA3-46E7-B8B4-3E7321F2446A}']
-    function  Lock: WordBool; safecall;
-    function  Get_Rts: WordBool; safecall;
+    function Lock: WordBool; safecall;
+    function Get_Rts: WordBool; safecall;
     procedure Set_Rts(Value: WordBool); safecall;
-    function  Get_Dtr: WordBool; safecall;
+    function Get_Dtr: WordBool; safecall;
     procedure Set_Dtr(Value: WordBool); safecall;
-    function  Get_Cts: WordBool; safecall;
-    function  Get_Dsr: WordBool; safecall;
+    function Get_Cts: WordBool; safecall;
+    function Get_Dsr: WordBool; safecall;
     procedure Unlock; safecall;
     property Rts: WordBool read Get_Rts write Set_Rts;
     property Dtr: WordBool read Get_Dtr write Set_Dtr;
@@ -294,7 +302,7 @@ type
 // *********************************************************************//
   IPortBitsDisp = dispinterface
     ['{3DEE2CC8-1EA3-46E7-B8B4-3E7321F2446A}']
-    function  Lock: WordBool; dispid 1;
+    function Lock: WordBool; dispid 1;
     property Rts: WordBool dispid 2;
     property Dtr: WordBool dispid 3;
     property Cts: WordBool readonly dispid 4;
@@ -303,11 +311,11 @@ type
   end;
 
 // *********************************************************************//
-// The Class CoOmniRigX provides a Create and CreateRemote method to          
-// create instances of the default interface IOmniRigX exposed by              
-// the CoClass OmniRigX. The functions are intended to be used by             
-// clients wishing to automate the CoClass objects exposed by the         
-// server of this typelibrary.                                            
+// The Class CoOmniRigX provides a Create and CreateRemote method to
+// create instances of the default interface IOmniRigX exposed by
+// the CoClass OmniRigX. The functions are intended to be used by
+// clients wishing to automate the CoClass objects exposed by the
+// server of this typelibrary.
 // *********************************************************************//
   CoOmniRigX = class
     class function Create: IOmniRigX;
@@ -315,11 +323,11 @@ type
   end;
 
 // *********************************************************************//
-// The Class CoRigX provides a Create and CreateRemote method to          
-// create instances of the default interface IRigX exposed by              
-// the CoClass RigX. The functions are intended to be used by             
-// clients wishing to automate the CoClass objects exposed by the         
-// server of this typelibrary.                                            
+// The Class CoRigX provides a Create and CreateRemote method to
+// create instances of the default interface IRigX exposed by
+// the CoClass RigX. The functions are intended to be used by
+// clients wishing to automate the CoClass objects exposed by the
+// server of this typelibrary.
 // *********************************************************************//
   CoRigX = class
     class function Create: IRigX;
@@ -327,11 +335,11 @@ type
   end;
 
 // *********************************************************************//
-// The Class CoPortBits provides a Create and CreateRemote method to          
-// create instances of the default interface IPortBits exposed by              
-// the CoClass PortBits. The functions are intended to be used by             
-// clients wishing to automate the CoClass objects exposed by the         
-// server of this typelibrary.                                            
+// The Class CoPortBits provides a Create and CreateRemote method to
+// create instances of the default interface IPortBits exposed by
+// the CoClass PortBits. The functions are intended to be used by
+// clients wishing to automate the CoClass objects exposed by the
+// server of this typelibrary.
 // *********************************************************************//
   CoPortBits = class
     class function Create: IPortBits;
@@ -340,7 +348,7 @@ type
 
 implementation
 
-uses ComObj;
+uses System.Win.ComObj;
 
 class function CoOmniRigX.Create: IOmniRigX;
 begin
@@ -373,3 +381,4 @@ begin
 end;
 
 end.
+

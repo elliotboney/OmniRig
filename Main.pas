@@ -151,7 +151,7 @@ begin
   Rig2.Enabled := true;
 
   Panel2.Align := alClient;
-  Width := 214;
+  Width := 264;
   Label9.Caption := Format('Version %d.%d', [HiWord(GetVersion), LoWord(GetVersion)]);
 
 
