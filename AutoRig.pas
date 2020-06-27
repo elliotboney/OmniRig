@@ -261,9 +261,9 @@ end;
 
 procedure TRigX.Set_Split(Value: RigParamX);
 begin
-  MainForm.Log('RIG%d Entering SetSplit', [FRig.RigNumber]);
+  MainForm.Log('RIG%d Entering Set_Split', [FRig.RigNumber]);
   FRig.Split := IntToParam(Value);
-  MainForm.Log('RIG%d Leaving SetSplit', [FRig.RigNumber]);
+  MainForm.Log('RIG%d Leaving Set_Split', [FRig.RigNumber]);
 end;
 
 procedure TRigX.Set_Rit(Value: RigParamX);
@@ -297,7 +297,7 @@ var
   NewMode: TRigParam;
 begin
 
-  MainForm.Log('RIG%d Entering SetMode', [FRig.RigNumber]);
+  MainForm.Log('RIG%d Entering SetBothModes', [FRig.RigNumber]);
 
   NewMode := IntToParam(Value);
 
@@ -345,7 +345,7 @@ begin
       FRig.Mode := NewMode;
     end;
 
-  MainForm.Log('RIG%d Leaving SetMode', [FRig.RigNumber]);
+  MainForm.Log('RIG%d Leaving SetBothModes', [FRig.RigNumber]);
 end;
 
 
