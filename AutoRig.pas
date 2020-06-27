@@ -413,8 +413,8 @@ begin
     end;
 
   if pmSplitOff in WrParams then FRig.Split := pmSplitOff;
-  FRig.Rit := pmRitOff;
-  FRig.Xit := pmXitOff;
+  if pmRitOff  in WrParams then FRig.Rit := pmRitOff;
+  if pmXitOff  in WrParams then FRig.Xit := pmXitOff;
 
  MainForm.Log('RIG%d Leaving SetSimplexMode', [FRig.RigNumber]);
 end;
@@ -472,8 +472,8 @@ begin
     end;
 
   if pmSplitOn in WrParams then FRig.Split := pmSplitOn;
-  FRig.Rit := pmRitOff;
-  FRig.Xit := pmXitOff;
+  if pmRitOff  in WrParams then FRig.Rit := pmRitOff;
+  if pmXitOff  in WrParams then FRig.Xit := pmXitOff;
 
   MainForm.Log('RIG%d Leaving SetSplitMode', [FRig.RigNumber]);
 end;
